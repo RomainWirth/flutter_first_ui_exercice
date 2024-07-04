@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
@@ -31,42 +32,70 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+        ),
         centerTitle: true,
-        titleTextStyle: const TextStyle(color: Colors.white),
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+        ),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Image(
-            image: NetworkImage('https://image.sciencenorway.no/245115.webp?imageId=245115&width=2116&height=1208&format=webp'),
-          ),
-          Expanded(
-            child: Column(
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Stack(
               children: [
-                const Expanded(
-                  child: Row(
-                    children: [
-                      Text(
-                        'Valentin Folliguet',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 200.00,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          'https://image.sciencenorway.no/245115.webp?imageId=245115&width=2116&height=1208&format=webp'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-                Expanded(
-                  child: Row(
-                    children: [
-                      Container(
+                Positioned(
+                  width: MediaQuery.of(context).size.width,
+                  top: MediaQuery.of(context).size.width * 0.30,
+                  child: const CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://media.istockphoto.com/id/1309328823/fr/photo/verticale-headshot-de-lemploy%C3%A9-masculin-de-sourire-dans-le-bureau.jpg?s=612x612&w=0&k=20&c=hCqYTwKfIW4Fp6_j_P-p8kMXB4b0H3mrajayCBd7JJw='),
+                    radius: 50,
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                const Text(
+                  'Valentin Folliguet',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: const Center(
                         child: Text(
                           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In erat odio, egestas sit amet velit id, fringilla.',
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          textDirection: TextDirection.rtl,
+                          softWrap: true,
                           style: TextStyle(
                             fontStyle: FontStyle.italic,
                             color: Colors.grey,
@@ -74,73 +103,97 @@ class _MyHomePageState extends State<MyHomePage> {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                const Expanded(
-                  child: Row(
-                    children: [
-                      Text('Modifier le profil'),
-                      Text('+'),
-                    ],
-                  ),
-                ),
-                const Expanded(
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Text('A propos de moi ...'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    TextButton(
+                      style: ButtonStyle(
+                        padding: WidgetStateProperty.all<EdgeInsets>(
+                            const EdgeInsets.all(15)),
+                        foregroundColor:
+                            WidgetStateProperty.all<Color>(Colors.blue),
+                        shape:
+                            WidgetStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: const BorderSide(color: Colors.blue)),
+                        ),
                       ),
-                      /*Expanded(
-                        child: Column(
-                          children: [
-                            Text('Annecy le view, France'),
-                            Text('Développeur polyvalent / Formateur'),
-                            Text('En couple'),
-                          ]
-                        )
-                      ),*/
-                    ]
-                  )
-                ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      const Expanded(
-                        child: Row(
-                          children: [
-                            Text('Amis'),
-                          ]
-                        )
+                      onPressed: () {},
+                      child: const Text(
+                        'Modifier le profil',
                       ),
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                color: Colors.yellow,
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                color: Colors.purple,
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                color: Colors.brown,
-                              )
-                            )
-                          ]
-                        )
-                      )
-                    ]
-                  )
-                )
+                    ),
+                    TextButton(
+                      style: ButtonStyle(
+                          padding: WidgetStateProperty.all<EdgeInsets>(
+                              const EdgeInsets.all(15)),
+                          foregroundColor:
+                              WidgetStateProperty.all<Color>(Colors.blue),
+                          backgroundColor:
+                              WidgetStateProperty.all<Color>(Colors.blue),
+                          shape: WidgetStateProperty.all<
+                                  RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side:
+                                      const BorderSide(color: Colors.blue)))),
+                      onPressed: () {},
+                      child: const Text('+',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )),
+                    )
+                  ],
+                ),
+                const Column(children: [
+                  Text('A propos de moi ...', textAlign: TextAlign.start),
+                  Column(children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.house,
+                        ),
+                        Text('Annecy le view, France'),
+                      ],
+                    ),
+                    Row(children: [
+                                            Icon(Icons.work),
+                                            Text('Développeur polyvalent / Formateur'),
+                                          ]),
+                    Row(children: [
+                                            Icon(
+                    Icons.favorite,
+                                            ),
+                                            Text('En couple'),
+                                          ])
+                  ]),
+                ]),
+                Column(children: [
+                  const Row(children: [
+                    Text('Amis'),
+                  ]),
+                  Row(children: [
+                    Container(
+                      color: Colors.yellow,
+                    ),
+                    Container(
+                      color: Colors.purple,
+                    ),
+                    Container(
+                      color: Colors.brown,
+                    )
+                  ])
+                ])
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
