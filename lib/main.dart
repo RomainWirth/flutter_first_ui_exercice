@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     TextButton(
                       style: ButtonStyle(
@@ -115,11 +115,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             const EdgeInsets.all(15)),
                         foregroundColor:
                             WidgetStateProperty.all<Color>(Colors.blue),
-                        shape:
-                            WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: const BorderSide(color: Colors.blue)),
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>( RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: const BorderSide(color: Colors.blue)
+                          ),
                         ),
                       ),
                       onPressed: () {},
@@ -127,27 +126,34 @@ class _MyHomePageState extends State<MyHomePage> {
                         'Modifier le profil',
                       ),
                     ),
-                    TextButton(
-                      style: ButtonStyle(
-                          padding: WidgetStateProperty.all<EdgeInsets>(
-                              const EdgeInsets.all(15)),
-                          foregroundColor:
-                              WidgetStateProperty.all<Color>(Colors.blue),
-                          backgroundColor:
-                              WidgetStateProperty.all<Color>(Colors.blue),
-                          shape: WidgetStateProperty.all<
-                                  RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side:
-                                      const BorderSide(color: Colors.blue)))),
-                      onPressed: () {},
-                      child: const Text('+',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          )),
+                    SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: TextButton(
+                        style: ButtonStyle(
+                            padding: WidgetStateProperty.all<EdgeInsets>(
+                                const EdgeInsets.all(15)
+                            ),
+                            foregroundColor: WidgetStateProperty.all<Color>(
+                                Colors.blue
+                            ),
+                            backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),
+                            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    side: const BorderSide(color: Colors.blue)
+                                )
+                            )
+                        ),
+                        onPressed: () {},
+                        child: const Text(
+                            '+',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            )),
+                      )
                     )
                   ],
                 ),
